@@ -5,62 +5,63 @@ import { Popover, Transition } from '@headlessui/react';
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = React.useState(false);
     const Segmentos = [
-        { 
+        {
             name: "DAMA",
             content: [
-                { name: "Vestidos", url: "/" },
-                { name: "Caminas", url: "/" },
-                { name: "Ceremonia", url: "/" },
-                { name: "Gran Gala", url: "/" },
+                { name: "Vestidos", url: "/sales" },
+                { name: "Caminas", url: "/sales" },
+                { name: "Ceremonia", url: "/sales" },
+                { name: "Gran Gala", url: "/sales" },
             ]
         },
-        { 
+        {
             name: "CABALLEROS",
             content: [
-                { name: "Camisas", url: "/" },
-                { name: "Polos y Playeras", url: "/" },
-                { name: "Chamarras", url: "/" },
-                { name: "Ropa Interior", url: "/" },
-                { name: "Trajes", url: "/" },
-                { name: "Ceremonias", url: "/" },
-                { name: "Pantalones", url: "/" },
-                { name: "Shorts", url: "/" },
-                { name: "Looks Completos", url: "/" },
-                { name: "Blazer", url: "/" },
+                { name: "Camisas", url: "/sales" },
+                { name: "Polos y Playeras", url: "/sales" },
+                { name: "Chamarras", url: "/sales" },
+                { name: "Ropa Interior", url: "/sales" },
+                { name: "Trajes", url: "/sales" },
+                { name: "Ceremonias", url: "/sales" },
+                { name: "Pantalones", url: "/sales" },
+                { name: "Shorts", url: "/sales" },
+                { name: "Looks Completos", url: "/sales" },
+                { name: "Blazer", url: "/sales" },
             ]
         },
-        { 
+        {
             name: "UNISEX",
             content: [
-                { name: "Camisas", url: "/" },
-                { name: "Chamarras", url: "/" },
+                { name: "Camisas", url: "/sales" },
+                { name: "Chamarras", url: "/sales" },
             ]
         },
-        { 
+        {
             name: "HOGAR Y ESTILO DE VIDA",
             content: [
-                { name: "Accesorios", url: "/" },
-                { name: "Snacks", url: "/" },
-                { name: "Bebidas", url: "/" },
-                { name: "Ropa de Cama", url: "/" },
+                { name: "Accesorios", url: "/sales" },
+                { name: "Snacks", url: "/sales" },
+                { name: "Bebidas", url: "/sales" },
+                { name: "Ropa de Cama", url: "/sales" },
             ]
         },
-        { 
+        {
             name: "BOOKS",
             content: [
-                { name: "COLECCIÓN 2023", url: "/" },
-                { name: "COLECCIÓN 2022", url: "/" },
-                { name: "COLECCIÓN 2021", url: "/" },
-                { name: "COLECCIÓN 2020", url: "/" },
+                { name: "COLECCIÓN 2023", url: "/sales" },
+                { name: "COLECCIÓN 2022", url: "/sales" },
+                { name: "COLECCIÓN 2021", url: "/sales" },
+                { name: "COLECCIÓN 2020", url: "/sales" },
             ]
         },
-        { 
+        {
             name: "UNIFORMES EMPRESARIALES",
             content: [
-                { name: "Camisas", url: "/" },
+                { name: "Camisas", url: "/sales" },
             ]
         },
     ];
+
 
     return (
         <div className="bg-black bg-opacity-75 shadow-md w-full z-10 fixed top-0 left-0">
@@ -77,7 +78,9 @@ const Navbar = () => {
                         </a>
                     </div>
                     <div className="cursor-pointer flex justify-center items-center pb-4">
-                        <img src="../../src/assets/img/logo.png" alt="logo" className="h-12 ml-4 md:h-20 md:ml-0" />
+                        <a href="/">
+                            <img src="../../src/assets/img/logo.png" alt="logo" className="h-12 ml-4 md:h-20 md:ml-0" />
+                        </a>
                     </div>
                     <div className="md:hidden">
                         <button className="text-white mr-4" onClick={() => setMenuOpen(!menuOpen)}>
@@ -130,9 +133,8 @@ const Navbar = () => {
                                 {({ open }) => (
                                     <>
                                         <Popover.Button
-                                            className={`${
-                                                open ? 'text-orange-400 border-orange-400 border-b-2' : 'text-white'
-                                            } hover:text-orange-400 hover:border-orange-400 duration-500 border-b-2 border-transparent w-full`}
+                                            className={`${open ? 'text-orange-400 border-orange-400 border-b-2' : 'text-white'
+                                                } hover:text-orange-400 hover:border-orange-400 duration-500 border-b-2 border-transparent w-full`}
                                         >
                                             {segmento.name}
                                         </Popover.Button>
@@ -166,7 +168,7 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                
+
             </div>
         </div>
     );
