@@ -6,7 +6,6 @@ import Footer from '../components/footer.jsx';
 const Index = () => {
   return (
     <div className="bg-[url(./assets/img/INDEX/IMG-V-4-1.jpg)] bg-cover bg-top w-screen h-screen overflow-y-auto relative">
-      <Navbar />
       <div className="min-h-screen text-white flex flex-col justify-between">
         <div className="flex-grow"></div>
         <div className="md:flex ml-8">

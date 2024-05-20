@@ -64,7 +64,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="bg-black bg-opacity-75 shadow-md w-full z-10 fixed top-0 left-0">
+        <div className="bg-black bg-opacity-75 hover:bg-opacity-100 duration-500 shadow-md w-full z-10 fixed top-0 left-0">
             <div className="w-11/12 block items-center py-4 mx-auto">
                 <div className="flex justify-between items-center">
                     <div className="text-white md:block hidden">
@@ -150,11 +150,11 @@ const Navbar = () => {
                                         >
                                             <Popover className="absolute z-10 w-full">
                                                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white">
-                                                    <div className="p-4">
+                                                    <div className="py-4">
                                                         <ul>
                                                             {segmento.content.map((contenido, index) => (
                                                                 <li key={index} className="mb-2 border-b-2 pb-1 border-transparent hover:border-zinc-300 duration-500">
-                                                                    <a href={contenido.url}>{contenido.name}</a>
+                                                                    <a className="px-12" href={contenido.url}>{contenido.name}</a>
                                                                 </li>
                                                             ))}
                                                         </ul>
