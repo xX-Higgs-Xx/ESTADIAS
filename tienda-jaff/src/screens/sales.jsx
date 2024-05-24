@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 
 const products = [
@@ -16,62 +17,7 @@ const products = [
         price: '$192',
         color: 'Black',
     },
-    {
-        id: 2,
-        name: 'Basic Tee 6-Pack',
-        href: '#',
-        images: [
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
-        ],
-        imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
-        price: '$192',
-        color: 'Black',
-    },
-    {
-        id: 3,
-        name: 'Basic Tee 6-Pack',
-        href: '#',
-        images: [
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
-        ],
-        imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
-        price: '$192',
-        color: 'Black',
-    },
-    {
-        id: 4,
-        name: 'Basic Tee 6-Pack',
-        href: '#',
-        images: [
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
-        ],
-        imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
-        price: '$192',
-        color: 'Black',
-    },
-    {
-        id: 5,
-        name: 'Basic Tee 6-Pack',
-        href: '#',
-        images: [
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg',
-            'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
-        ],
-        imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
-        price: '$192',
-        color: 'Black',
-    },
+    // Agrega los demás productos aquí...
 ];
 
 const Sales = () => {
@@ -79,6 +25,7 @@ const Sales = () => {
     const [currentImageIndices, setCurrentImageIndices] = useState({});
     const [selectedSection, setSelectedSection] = useState('');
     const [selectedSegment, setSelectedSegment] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedSection = localStorage.getItem('selectedSection');
@@ -118,6 +65,10 @@ const Sales = () => {
         localStorage.setItem('selectedSegment', segmentName);
     };
 
+    const handleProductClick = (product) => {
+        navigate('/product', { state: { product } });
+    };
+
     return (
         <>
             <Navbar onSelectSection={handleSelectSection} />
@@ -131,8 +82,7 @@ const Sales = () => {
                         {products.map((product) => (
                             <div
                                 key={product.id}
-                                className={`group relative w-full h-full sm:w-1/2 lg:w-1/4 transition-all duration-300 ${hoveredProductId === product.id ? 'border border-black' : ''
-                                    }`}
+                                className={`group relative w-full h-full sm:w-1/2 lg:w-1/4 transition-all duration-300 ${hoveredProductId === product.id ? 'border border-black' : ''}`}
                                 onMouseEnter={() => {
                                     setHoveredProductId(product.id);
                                     setCurrentImageIndices((prevState) => ({
@@ -141,21 +91,21 @@ const Sales = () => {
                                     }));
                                 }}
                                 onMouseLeave={() => setHoveredProductId(null)}
+                                onClick={() => handleProductClick(product)}
                             >
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-sm bg-gray-200 lg:aspect-none lg:h-full relative">
                                     <img
-                                        src={
-                                            hoveredProductId === product.id
-                                                ? product.images[getCurrentImageIndex(product)]
-                                                : product.images[0]
-                                        }
+                                        src={hoveredProductId === product.id ? product.images[getCurrentImageIndex(product)] : product.images[0]}
                                         alt={product.imageAlt}
                                         className="h-full w-full object-cover object-center lg:h-full lg:w-full transition-opacity duration-500"
                                     />
                                     {hoveredProductId === product.id && (
                                         <>
                                             <button
-                                                onClick={() => handlePrevImage(product)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handlePrevImage(product);
+                                                }}
                                                 className="absolute left-0 top-1/2 transform -translate-y-1/2 h-full p-2 z-10"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -164,7 +114,10 @@ const Sales = () => {
                                                 </svg>
                                             </button>
                                             <button
-                                                onClick={() => handleNextImage(product)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleNextImage(product);
+                                                }}
                                                 className="absolute right-0 top-1/2 transform -translate-y-1/2 h-full p-2 z-10"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -178,10 +131,8 @@ const Sales = () => {
                                 <div className="flex justify-around">
                                     <div>
                                         <h3 className="text-gray-700">
-                                            <a href={product.href}>
-                                                <span aria-hidden="true" className="absolute inset-0" />
-                                                {product.name}
-                                            </a>
+                                            <span aria-hidden="true" className="absolute inset-0" />
+                                            {product.name}
                                         </h3>
                                         <p className="mt-1 text-gray-500">{product.color}</p>
                                     </div>
@@ -191,7 +142,7 @@ const Sales = () => {
                         ))}
                     </div>
                 </div>
-            </div> 
+            </div>
         </>
     );
 };

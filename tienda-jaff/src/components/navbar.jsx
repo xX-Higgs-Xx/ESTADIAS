@@ -62,10 +62,6 @@ const Navbar = ({ onSelectSection }) => {
         },
     ];
 
-    const handleClick = (sectionName, segmentName) => {
-        onSelectSection(sectionName, segmentName);
-    };
-
     return (
         <div className="bg-black bg-opacity-75 hover:bg-opacity-100 duration-500 shadow-md w-full z-20 fixed top-0 left-0">
             <div className="w-11/12 block items-center py-4 mx-auto">
@@ -157,7 +153,7 @@ const Navbar = ({ onSelectSection }) => {
                                                         <ul>
                                                             {segmento.content.map((contenido, index) => (
                                                                 <li key={index} className="mb-2 border-b-2 pb-1 border-transparent hover:border-zinc-300 duration-500">
-                                                                    <a className="px-12" href={contenido.url} onClick={() => handleClick(contenido.name, segmento.name)}>{contenido.name}</a>
+                                                                    <a className="px-12" href={contenido.url} onClick={() => onSelectSection(contenido.name, segmento.name)}>{contenido.name}</a>
                                                                 </li>
                                                             ))}
                                                         </ul>
